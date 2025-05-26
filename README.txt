@@ -15,8 +15,8 @@ Setup:
 
 1.  Clone the repository (or download the files):
     ```bash
-    git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git
-    cd YOUR_REPOSITORY_NAME
+    git clone https://github.com/Ngambarde/aim_trainer_analysis.git
+    cd aim_trainer_analysis
     ```
 
 2.  Create a Python virtual environment (recommended):
