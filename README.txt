@@ -45,4 +45,12 @@ Available Options:
 --flick_radius: Radius for flick proximity detection.
 --conf_thresh: YOLO confidence threshold.
 --iou_thresh: YOLO IOU threshold.
-Run python aim_analyzer_script_name.py -h for more details.
+Run python aim_analysis.py -h for more details.
+
+
+
+Future Goals:
+- Develop GUI for easier configuration and file selection as well as metric visualizations.
+- Add support for Aimlabs
+- Add more advanced statstical analysis/plotting
+- Add support for other scenario types
