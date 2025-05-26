@@ -22,14 +22,14 @@ target/ # For Rust/other compiled outputs if any
 *.DS_Store
 Thumbs.db
 
-# Output files (IMPORTANT for your project)
+# Output files
 processed_videos/
 csv_reports/
 *.log
 batch_errors.log
 overall_batch_summary.csv
-*_hit_metrics.csv # To catch all hit metrics CSVs
-*_summary.csv     # To catch all individual video summary CSVs
+*_hit_metrics.csv
+*_summary.csv
 
 # Other files from development
 runs/
@@ -42,38 +42,6 @@ Test Clips/
 runs/
 configs/
 sort/__pycache__/
-
-annotated_proximity_on_crop.mp4
-Batch Inference for Dynamic Clips.py
-cropped_roi.mp4
-FastSAM-s.pt
-Full Program for Dynamic Scenarios.py
-Full Program for Dynamic Scenarios with Timer Reset.py
-Full Program for Static Scenarios.py
-Full Program for Static Scenarios - Refactored.py
-Hit Detection Using Tiered Recognition.py
-Hit Detection with Results Screen Reading.py
-PaddleOCR Kill Count Inference.py
-SAM2 Inference.py
-SAM2 versus YOLOV8-seg.py
-SAM2-YOLO Auto Annotation.py
-Scracth File.py
-Scratch2.py
-Scratch_File.py
-static_batch_processing.py
-static_batch_processing_refactor_5-22.py
-static_batch_processing_with_flicks.py
-Upload Weights to Roboflow.py
-YOLO - SAM2 Video Predict - Chunks.py
-yolo11n.pt
-yolo11n-seg.pt
-YOLOv8-seg With Elipses.py
-yolov8m-seg.pt
-yolov8n.pt
-yolov8n-seg.pt
-yolov8s-seg.pt
-yolov8x-seg.pt
-YoloV11-seg Frame by Frame Inference.py
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints# created by virtualenv automatically
