@@ -70,8 +70,7 @@ class AimPhaseTracker:
         self.accumulated_flick_distance = 0.0
         self.last_flick_metrics = {}                        # Clear last flick metrics for the new cycle
 
-    def update(self, current_crosshair_speed: float, in_flick_proximity: bool, hit_registered_this_frame: bool) -> \
-    Tuple[Optional[Dict], Optional[Dict]]:
+    def update(self, current_crosshair_speed: float, in_flick_proximity: bool, hit_registered_this_frame: bool) -> Tuple[Optional[Dict], Optional[Dict]]:
         """
         Updates the aiming phase and timings
         """
@@ -358,7 +357,7 @@ def check_scenario_reset_ocr(frame: np.ndarray, ocr_model: PaddleOCR, ocr_state:
 
     if timer_box_coords_relative:
         if not ocr_state["timer_found"]:
-            xs = [pt[0] for pt in timer_box_coords_relative];
+            xs = [pt[0] for pt in timer_box_coords_relative]
             ys = [pt[1] for pt in timer_box_coords_relative]
             abs_box_x0, abs_box_y0 = tx0 + min(xs), ty0 + min(ys)
             abs_box_x1, abs_box_y1 = tx0 + max(xs), ty0 + max(ys)
@@ -523,13 +522,13 @@ def draw_debug_visualizations(frame: np.ndarray, viz_data: Dict, config: Dict):
             last_flick_text = f"Last Flick: {flick_s:.3f}s @ {flick_speed:.1f}px/f"
         else:
             last_flick_text = f"Last Flick: {flick_s:.3f}s"
-    cv2.putText(frame, last_flick_text, (10, text_y_offset), font, font_scale, color_metric, thickness);
+    cv2.putText(frame, last_flick_text, (10, text_y_offset), font, font_scale, color_metric, thickness)
     text_y_offset += 18
 
     last_adjust_text = "Last Adjust: N/A"
     if viz_data['last_adj_s'] is not None and not np.isnan(viz_data['last_adj_s']):
         last_adjust_text = f"Last Adjust: {viz_data['last_adj_s']:.3f}s"
-    cv2.putText(frame, last_adjust_text, (10, text_y_offset), font, font_scale, color_metric, thickness);
+    cv2.putText(frame, last_adjust_text, (10, text_y_offset), font, font_scale, color_metric, thickness)
     text_y_offset += 18
 
 

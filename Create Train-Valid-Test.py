@@ -3,9 +3,9 @@ import random
 import shutil
 from pathlib import Path
 from tqdm import tqdm
-import yaml # Need PyYAML: pip install pyyaml
+import yaml
 
-# === Configuration ===
+# --- Configuration ---
 SOURCE_DATA_DIR = "images/"
 DATASET_OUTPUT_DIR = "dataset/"
 
