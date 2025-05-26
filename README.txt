@@ -28,6 +28,9 @@ Setup:
     ```bash
     pip install -r requirements.txt
     ```
+4.  Place YOLO Model:
+    Ensure the YOLO model (best.pt) is correctly located in the models/ subdirectory
+    You may specify a different path using the --yolo_model CLI option
 
 Usage
 Run the script from the command line:
