@@ -40,12 +40,12 @@ python aim_analysis.py path/to/your/input_videos_folder path/to/your/output_fold
 Example: python aim_analysis.py "C:/MyAimVideos" "C:/AnalysisOutput" --no_viz
 
 ## Available Options:
---yolo_model: Path to YOLO model best.pt (or engine.pt) file.
---no_viz: Disable debug video output.
---flick_radius: Radius for flick proximity detection.
---conf_thresh: YOLO confidence threshold.
---iou_thresh: YOLO IOU threshold.
-for more details run
+--yolo_model: Path to YOLO model best.pt (or engine.pt) file.\
+--no_viz: Disable debug video output.\
+--flick_radius: Radius for flick proximity detection.\
+--conf_thresh: YOLO confidence threshold.\
+--iou_thresh: YOLO IOU threshold.\
+for more details run\
 ```bash
 python aim_analysis.py -h
 ```
