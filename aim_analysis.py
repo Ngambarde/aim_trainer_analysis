@@ -282,7 +282,7 @@ def find_closest_point(points_list: List, target_point: Tuple[int, int]) -> Opti
 
     """
     This functions is used to determine the closest target center to the crosshair.
-    This helps identify if a target was successfully hit, or simply passed over
+    This is used later to help identify if a target was successfully hit, or simply passed over
     By adding the crosshair movement to its current location, if this lands near a target center, it means the target was not hit.
     If there is no target center in proximity, it confirms a hit
     """
