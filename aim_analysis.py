@@ -247,9 +247,9 @@ def calculate_target_motion(current_centers: List, prev_centers: List, max_dist:
     np.linalg.norm calculates the euclidian distance of the values defined in the array against the last axis (axis=2)
     meaning for each [i, j] it calculate sqrt(dx^2 + dy^2)
 
-    IN SHORT cost_matrix is a numpy array = [[Euclidian(c0,p0), Euclidian(c0,p1)],
-     	                                    [Euclidian(c0,p0), Euclidian(c0,p1)],
-     	                                    [Euclidian(c0,p2), Euclidian(c0,p2)]]
+    IN SHORT cost_matrix is a numpy array = [[Euclidian(c0,p0), Euclidian(c1,p0)],
+     	                                    [Euclidian(c0,p1), Euclidian(c1,p1)],
+     	                                    [Euclidian(c0,p2), Euclidian(c1,p2)]]
 
     row_ind, col_ind = linear_sum_assignment(cost_matrix) explanation:
     lienar_sum_assignment(cost_matrix): Solves the cost matrix using the hungarian algorithm, returns the minimum of
