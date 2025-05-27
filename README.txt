@@ -1,8 +1,8 @@
-Aim Training Performance Analyzer
+# Aim Training Performance Analyzer
 
 This project analyzes gameplay videos from aim training software (Currently limited to Kovaaks) to extract detailed performance metrics. It uses YOLOv8 for target segmentation and PaddleOCR for extracting scores and other on-screen text.
 
-Features:
+## Features:
 - Target detection and segmentation using YOLOv8.
 - OCR for scenario timer reset detection and results screen parsing.
 - Detailed flick and adjustment phase timing.
@@ -11,7 +11,7 @@ Features:
 - Optional debug visualization video output.
 - CSV output for hit-by-hit metrics and per-video summaries.
 
-Setup:
+## Setup:
 
 1.  Clone the repository (or download the files):
     ```bash
@@ -32,14 +32,14 @@ Setup:
     Ensure the YOLO model (best.pt) is correctly located in the models/ subdirectory
     You may specify a different path using the --yolo_model CLI option
 
-Usage
+## Usage
 Run the script from the command line:
 ```bash
 python aim_analysis.py path/to/your/input_videos_folder path/to/your/output_folder [OPTIONS]
 
 Example: python aim_analysis.py "C:/MyAimVideos" "C:/AnalysisOutput" --no_viz
 
-Available Options:
+## Available Options:
 --yolo_model: Path to YOLO model best.pt (or engine.pt) file.
 --no_viz: Disable debug video output.
 --flick_radius: Radius for flick proximity detection.
@@ -49,7 +49,7 @@ Run python aim_analysis.py -h for more details.
 
 
 
-Future Goals:
+## Future Goals:
 - Develop GUI for easier configuration and file selection as well as metric visualizations.
 - Add support for Aimlabs
 - Add more advanced statstical analysis/plotting
