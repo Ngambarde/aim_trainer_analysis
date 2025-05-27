@@ -394,7 +394,7 @@ def check_results_screen_ocr(frame: np.ndarray, ocr_model: PaddleOCR, game_resul
             acc_match = re.search(r'(\d+\.\d+)%', text_center)
             if acc_match: game_results_ocr["accuracy"] = acc_match.group(1) + "%"
 
-        if game_results_ocr["hit_count"] is None:       # If shit_count is already found this check is skipped
+        if game_results_ocr["hit_count"] is None:       # If hit_count is already found this check is skipped
             hits_shots_match = re.search(r'(\d+)\s*/\s*(\d+)', text_center)  # Format is Hits / Shots
             if hits_shots_match:
                 game_results_ocr["hit_count"] = int(hits_shots_match.group(1))  # Stores hit count in game_results_ocr dictionary
@@ -411,7 +411,7 @@ def determine_hit_registration(
         config: Dict
 ) -> bool:
     """
-    etermines if a hit was registered in the current frame   #
+    Determines if a hit was registered in the current frame
     """
     is_previous_main_target_identifiable = False
     if current_mask_centers and prev_mask_centers:
