@@ -13,12 +13,12 @@ This project analyzes gameplay videos from aim training software (Currently limi
 
 ## Setup:
 
-1.  Clone the repository (or download the files):
+1.  Clone the repository:
     ```bash
     git clone https://github.com/Ngambarde/aim_trainer_analysis.git
     ```
 
-2.  Create a Python virtual environment (recommended):
+2.  Create the Python virtual environment:
     ```bash
     python -m venv .venv
     source .venv/bin/activate
