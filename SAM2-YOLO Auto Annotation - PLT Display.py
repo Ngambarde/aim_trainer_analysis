@@ -19,7 +19,7 @@ except ImportError:
 
 
 
-# --- CONFIGURATION (Keep as is) ---
+# --- Configuration ---
 IMAGE_DIR = "images/"
 OUTPUT_DIR = "outputs/"
 REJECTED_DIR = os.path.join(OUTPUT_DIR, "rejected_images")
@@ -30,7 +30,7 @@ YOLO_MODEL_PATH = "models/best.pt"
 SAM2_CHECKPOINT = "sam2_checkpoints/sam2.1_hiera_large.pt"
 SAM2_CONFIG = "sam2_configs/sam2.1/sam2.1_hiera_l.yaml"
 
-# --- SETUP (Keep as is) ---
+# --- Setup ---
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(REJECTED_DIR, exist_ok=True)
 os.makedirs(os.path.join(OUTPUT_DIR, "images"), exist_ok=True)
@@ -53,7 +53,7 @@ except Exception as e:
     print(f"Error loading models: {e}")
     sys.exit(1)
 
-# --- Helper Functions (Keep generate_point_prompts, predict_sam_masks, save_yolo_segmentation, get_processed_stems as is) ---
+# --- Helper Functions ---
 def detect_yolo_boxes(model, image):
     """
     Runs YOLO prediction and returns boxes as a NumPy array
@@ -119,7 +119,7 @@ def save_yolo_segmentation(image_path, image_shape, masks):
     label_file = os.path.join(OUTPUT_DIR, "labels", f"{name_stem}.txt")
     mask_dir = os.path.join(OUTPUT_DIR, "masks")
 
-    # Ensure directories exist
+    # Ensures directories exist
     os.makedirs(os.path.dirname(label_file), exist_ok=True)
     os.makedirs(mask_dir, exist_ok=True)
 
@@ -142,7 +142,7 @@ def save_yolo_segmentation(image_path, image_shape, masks):
             cv2.imwrite(str(mask_path_obj), mask_bin)
         except Exception as e:
             print(f"Error saving mask PNG {mask_path_obj}: {e}")
-            continue # Skip this mask if saving failed
+            continue
 
         # Find contours to get polygon points
         contours, _ = cv2.findContours(mask_bin, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -165,7 +165,6 @@ def save_yolo_segmentation(image_path, image_shape, masks):
                 normalized_points.extend([norm_x, norm_y])
 
             # Format the line for the label file: class_id followed by normalized points
-            # Assuming class_id is 0 for 'Target'
             class_id = 0
             label_line = f"{class_id} " + " ".join(map(lambda x: f"{x:.6f}", normalized_points))
             yolo_label_lines.append(label_line)
@@ -191,7 +190,7 @@ def save_yolo_segmentation(image_path, image_shape, masks):
             if source_image is not None:
                  cv2.imwrite(image_save_path, source_image)
             else:
-                 print(f"Warning: Could not read source image {image_path} to copy.")
+                 print(f"Warning: Could not read source image {image_path} to copy")
         except Exception as e:
              print(f"Error copying original image {image_path}: {e}")
     else:
@@ -224,11 +223,11 @@ def visualize_annotation(image_rgb, masks, boxes, point_coords, point_labels):
     # Blend overlay
     vis_image_rgb = cv2.addWeighted(vis_image_rgb, 0.6, overlay, 0.4, 0)
 
-    # --- Display using Matplotlib ---
+    # Display using Matplotlib
     fig, ax = plt.subplots(figsize=(19.2, 10.8), dpi=100)
     ax.imshow(vis_image_rgb)
 
-    # --- Create Info Text with Mask Count ---
+    # Create Info Text with Mask Count
     info_text = f"Detected: {num_masks} | [Y] Accept    [N] Reject    [E] Exit"
     ax.text(10, 30, info_text, fontsize=12,
             color='white', backgroundcolor='black', alpha=0.7)
@@ -238,7 +237,7 @@ def visualize_annotation(image_rgb, masks, boxes, point_coords, point_labels):
     plt.show(block=False)
     plt.pause(0.1)
 
-    return fig # Return the figure object
+    return fig
 
 # --- Annotation Function ---
 def annotate_image(image_path, sam_predictor):
@@ -304,7 +303,7 @@ def get_processed_stems(output_dir, rejected_dir):
 
 # --- Main loop ---
 def main():
-    all_image_paths = list(Path(IMAGE_DIR).glob("*.jpg")) + list(Path(IMAGE_DIR).glob("*.png")) # Include png
+    all_image_paths = list(Path(IMAGE_DIR).glob("*.jpg")) + list(Path(IMAGE_DIR).glob("*.png"))
     if not all_image_paths:
         print(f"Exiting: No images found in {IMAGE_DIR}")
         return
@@ -337,7 +336,7 @@ def main():
             elif result is True:
                 labeled_count += 1
 
-            # --- Trigger garbage collection periodically ---
+            # Trigger garbage collection periodically
             if (labeled_count + len(processed_stems)) % 20 == 0: # Runs every 20 images
                  gc.collect()
                  if DEVICE.type == 'cuda':
