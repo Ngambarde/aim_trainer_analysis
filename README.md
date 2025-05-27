@@ -16,13 +16,12 @@ This project analyzes gameplay videos from aim training software (Currently limi
 1.  Clone the repository (or download the files):
     ```bash
     git clone https://github.com/Ngambarde/aim_trainer_analysis.git
-    cd aim_trainer_analysis
     ```
 
 2.  Create a Python virtual environment (recommended):
     ```bash
     python -m venv .venv
-    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+    source .venv/bin/activate
     ```
 3.  Install dependencies:
     ```bash
@@ -36,6 +35,7 @@ This project analyzes gameplay videos from aim training software (Currently limi
 Run the script from the command line:
 ```bash
 python aim_analysis.py path/to/your/input_videos_folder path/to/your/output_folder [OPTIONS]
+```
 
 Example: python aim_analysis.py "C:/MyAimVideos" "C:/AnalysisOutput" --no_viz
 
@@ -45,8 +45,10 @@ Example: python aim_analysis.py "C:/MyAimVideos" "C:/AnalysisOutput" --no_viz
 --flick_radius: Radius for flick proximity detection.
 --conf_thresh: YOLO confidence threshold.
 --iou_thresh: YOLO IOU threshold.
-Run python aim_analysis.py -h for more details.
-
+for more details run
+```bash
+python aim_analysis.py -h
+```
 
 
 ## Future Goals:
