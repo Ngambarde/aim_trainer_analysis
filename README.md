@@ -68,18 +68,17 @@ The purpose of this aim trainer analysis project is to empower users with previo
 An aim trainer is a game that takes place in a simplistic 3D environment. In this environment a user can select from a variety of scenarios that focus on specific aspects of aiming in FPS (first person shooter) games. These scenarios usually last 1 minute and during this time the user must try to hit as many targets as possible, the user is usually stationed at a fixed position in this environment. In the scenarios discussed in this project, the targets are all spherical and are identical in size, although the size will vary by the specific scenario. The main categories are static, dynamic, and tracking, there are additional subcategories that I will leave out of this description. Users are awarded points based on the number of targets hit (occasionally being penalized for misses depending on the scenario) or how long they spend on target in tracking scenarios. 
 ADD WHAT IS AN AIM TRAINER GIF HERE 
 ### Static Scenarios 
-In static scenarios, the max number of targets on screen for that scenario appear at random locations against a wall that is located directly in front of the user and does not move. Once the user clicks once on a target, it will count a hit, and another target will appear in a random location on the wall. Users may or may not be punished for clicking and not hitting a target depending on the scenario type. 
+In static scenarios, the max number of targets on screen for that scenario appear at random locations against a wall that is located directly in front of the user and does not move. Once the user clicks once on a target, it will count a hit, and another target will appear in a random location on the wall. Users may or may not be punished for clicking and not hitting a target depending on the scenario type.\
 The goal in a static scenario is to hit as many targets as possible in the shortest amount of time 
 ### Dynamic Scenarios 
-In dynamic scenarios the maximum number of targets appear slightly offset from the wall directly in front of the user, after which they will move erratically. Once a user hits a target, it will disappear, and a new one will appear. 
-
+In dynamic scenarios the maximum number of targets appear slightly offset from the wall directly in front of the user, after which they will move erratically. Once a user hits a target, it will disappear, and a new one will appear.\
 The goal in a dynamic scenario is to hit as many targets as possible in the shortest amount of time 
 ### Tracking Scenarios 
-In tracking scenarios, there can be 1 or multiple targets that move along a set axis or motion path. This motion can be reversed occasionally or not depending on the scenario. In tracking scenarios, the user must hold the left click on their mouse while keeping the crosshair on the target. The target can then either disappear after a set number of seconds the user is on the target or may never disappear. 
+In tracking scenarios, there can be 1 or multiple targets that move along a set axis or motion path. This motion can be reversed occasionally or not depending on the scenario. In tracking scenarios, the user must hold the left click on their mouse while keeping the crosshair on the target. The target can then either disappear after a set number of seconds the user is on the target or may never disappear.\
 The goal in a tracking scenario is to spend as much time as possible with the crosshair on the target. 
 ## Current Improvement Process 
-The current most efficient method that competitive FPS players use to improve their aim is to first play a benchmark playlist that has a variety of scenarios to gauge their skill level in each aiming category. The benchmark seen below is provided by Voltaic and is the standard used in the community for gauging skill level and progress. There are three tiers of benchmarks (Novice, Intermediate, and Advanced), with each tier having 4 sub-tiers (for novice: platinum -> diamond -> jade -> master). 
-After a user plays through the appropriate benchmark scenarios, they will focus on the scenario type that they scored the lowest on. For example, if a user scored low on static scenarios, they would focus their training playing additional static scenarios. Voltaic and the aim training community have in-game playlists that compile recommended scenarios depending on the user's tier. This method is effective for intermediate players with prior FPS experience who understand this improvement process.
+The current most efficient method that competitive FPS players use to improve their aim is to first play a benchmark playlist that has a variety of scenarios to gauge their skill level in each aiming category. The benchmark seen below is provided by Voltaic and is the standard used in the community for gauging skill level and progress. There are three tiers of benchmarks (Novice, Intermediate, and Advanced), with each tier having 4 sub-tiers (for novice: platinum -> diamond -> jade -> master).\ 
+After a user plays through the appropriate benchmark scenarios, they will focus on the scenario type that they scored the lowest on. For example, if a user scored low on static scenarios, they would focus their training playing additional static scenarios. Voltaic and the aim training community have in-game playlists that compile recommended scenarios depending on the user's tier. This method is effective for intermediate players with prior FPS experience who understand this improvement process.\
 For users who are struggling to improve, or highly skilled players who are plateauing at their skill level due to not being able to identify key weaknesses, the fastest method for identifying these weak areas is to hire an aim training coach, which costs ~$250 for a one-off session. 
 ### Pros of the Current Improvement Process 
 - “Gamifys” the improvement process with the benchmark leaderboards that allow users to gain ranks and compare scores based on their skill level. 
@@ -92,54 +91,54 @@ For users who are struggling to improve, or highly skilled players who are plate
 - No specific guidance on where to focus efforts. For example, low static scores can be caused by slow flicks from one target to the next, poor target selection, slow time to confirm target, slow micro-adjustments after initial flick, etc. 
 
 ## Where Aim Training Analysis Comes In 
-The purpose of the aim training analysis program is to allow users to pull additional information out of their recorded gameplay. For example, when a scenario ends a results screen appears showing the total shots taken (clicks) and the total shots hit (clicks while on target), as well as a leaderboard of other users in the same score range, with their accuracy. This is not enough meaningful information to draw conclusions on where to focus training to efficiently improve. 
-For example, low static scores can be caused by slow flicks from one target to the next, poor target selection, slow time to confirm target, slow micro-adjustments after initial flick, fatigue or nerves causing score to drop off by the end of the scenario, etc. the aim trainer analysis program will allow users to pull all this information and visualize it. 
+The purpose of the aim training analysis program is to allow users to pull additional information out of their recorded gameplay. For example, when a scenario ends a results screen appears showing the total shots taken (clicks) and the total shots hit (clicks while on target), as well as a leaderboard of other users in the same score range, with their accuracy. This is not enough meaningful information to draw conclusions on where to focus training to efficiently improve.\
+For example, low static scores can be caused by slow flicks from one target to the next, poor target selection, slow time to confirm target, slow micro-adjustments after initial flick, fatigue or nerves causing score to drop off by the end of the scenario, etc. the aim trainer analysis program will allow users to pull all this information and visualize it.\
 The aim training analysis will not only provide users with the data and means to improve more efficiently but will also help aim training coaches better analyze their clients and provide data driven metrics on their results. 
 # Project Overview - Engineering 
 ## Part 1: Target Detection
-The first step I took in this project was to design an overall view of what the project would entail. I knew that I wanted users to be able to upload a clip of their gameplay and receive metrics as the output. For this, I would need a way to detect successful target hits visually. Detecting hits would allow me to collect basic data metrics, but for more advanced metrics, such as time on target, distance from crosshair to target (which is used to determine flick speed) I would need to outline the shape of the object, so for this I decided to use an object detection model. 
+The first step I took in this project was to design an overall view of what the project would entail. I knew that I wanted users to be able to upload a clip of their gameplay and receive metrics as the output. For this, I would need a way to detect successful target hits visually. Detecting hits would allow me to collect basic data metrics, but for more advanced metrics, such as time on target, distance from crosshair to target (which is used to determine flick speed) I would need to outline the shape of the object, so for this I decided to use an object detection model.\
 The main requirements that I had for this stage of the project was to ensure the highest mask quality possible to avoid any false negatives/positives when attempting to detect metrics later. As well as being able to process a user input video at >30 FPS.
 ### Dataset Collection 
-For learning purposes, I wanted to collect and annotate my own dataset. I wanted to train the model on one aim trainer for the time being as I knew no matter what model I selected I would allow for modularity to re-train a more robust model at a later point if necessary. 
-I decided to source my data from YouTube as there are hundreds of videos of users playing Kovaaks FPS Aim Trainer. The only downside to using Kovaaks is that the game allows users to adjust their target/background color and texture. To avoid any overfitting, I ensured I collected videos from a variety of users so that no one configuration was overly present in the dataset. 
-I collected around 40 URLs of gameplay footage from a variety of users and downloaded them as mp4 files. I then created the `MP4 to Frames.py` script which uses OpenCV to grab specific frames of each video. For my dataset I grabbed a frame every 1 second, although this can be adjusted in the code. 
+For learning purposes, I wanted to collect and annotate my own dataset. I wanted to train the model on one aim trainer for the time being as I knew no matter what model I selected I would allow for modularity to re-train a more robust model at a later point if necessary.\
+I decided to source my data from YouTube as there are hundreds of videos of users playing Kovaaks FPS Aim Trainer. The only downside to using Kovaaks is that the game allows users to adjust their target/background color and texture. To avoid any overfitting, I ensured I collected videos from a variety of users so that no one configuration was overly present in the dataset.\
+I collected around 40 URLs of gameplay footage from a variety of users and downloaded them as mp4 files. I then created the `MP4 to Frames.py` script which uses OpenCV to grab specific frames of each video. For my dataset I grabbed a frame every 1 second, although this can be adjusted in the code.\
 I then manually cleaned this dataset for any images that did not include targets, such as the results screen, video intro/outros, etc. 
 #### Annotation
-For annotation I uploaded the dataset images to Roboflow and utilized the built-in polygon to manually draw the segmentation masks around each target, labeled the ‘target’ class, this will be the only labeled class in the dataset. Every image took ~1 minute to manually annotate, and thus building out the initial dataset was an arduous task. My initial goal was ~200 images, or around 5 frames per extracted video.
-Roboflow does have built in auto-annotation tools, although the mask quality was quite low and resulted in jagged edges on the masks. My original plan was to train a preliminary object detection model on my manually labeled images and then upload these weights into Roboflow for auto-annotation, but I later found out that the results for this method were also unsatisfactory.
+For annotation I uploaded the dataset images to Roboflow and utilized the built-in polygon to manually draw the segmentation masks around each target, labeled the ‘target’ class, this will be the only labeled class in the dataset. Every image took ~1 minute to manually annotate, and thus building out the initial dataset was an arduous task. My initial goal was ~200 images, or around 5 frames per extracted video.\
+Roboflow does have built in auto-annotation tools, although the mask quality was quite low and resulted in jagged edges on the masks. My original plan was to train a preliminary object detection model on my manually labeled images and then upload these weights into Roboflow for auto-annotation, but I later found out that the results for this method were also unsatisfactory.\
 I exported the images in 1920x1080 format using Roboflows built in YOLOv8 export option which outputs a 80/20/10 train, validate, test folders with images, as well as a data.yaml file.
 ### Model Selection 
 #### YOLO (You Only Look Once)
-As stated previously, the main requirements for this stage were to generate the highest quality masks possible as well as keep the processing time >30FPS. 
+As stated previously, the main requirements for this stage were to generate the highest quality masks possible as well as keep the processing time >30FPS.\
 Initially I experimented with training a YOLOv8-m model, which was the largest model I could train locally, on my manually labeled images. The script I used for training can be found in the directory as `Target Yolov8 Model – Image Segmentation.py` and  `Target Yolov8 Model – Bounding Boxes.py`. I then wrote the script `Model Inference Testing.py` to visualize the model's output given an image. The medium sized model did not perform well with 51 true positives, 27 false negatives, and 1 false positive. Meaning, it had low recall.
 ***ADD CONFUSION MATRIX FROM FINAL PRESENTATION HERE***
 To save computational costs, I experimented with identical hyperparameters, simply changing from the medium to the nano YOLO model. The nano model performed substantially better, and detected most targets, but struggled with generalizing to target/background colors that were not in the training set. The nano model, despite being smaller, performed substantially better. The medium model suffered from overfitting the training data due to its larger capacity relative to the dataset size and the comparative simplicity of the visual features required by this segmentation task. Thus, the nano model's more constrained architecture led to better generalization. 
 ***INSERT YOLO MODEL SIZES AND PARAMETERS HERE***
 ##### Results
-The results of the YOLO model were unsatisfactory as the mask resolution gets downsized to 640x640, this resulted in the masks being blocky when transferred back to the 1920x1080 frames. The masks were segmenting areas that were not part of the target and subtracting areas that were. Although, the processing time was ~60FPS, but it was not worth the trade-off in mask accuracy
+The results of the YOLO model were unsatisfactory as the mask resolution gets downsized to 640x640, this resulted in the masks being blocky when transferred back to the 1920x1080 frames. The masks were segmenting areas that were not part of the target and subtracting areas that were. Although, the processing time was ~60FPS, but it was not worth the trade-off in mask accuracy.\
 ***INSERT IMAGE OF BLOCKY YOLO SEGMENTATION MASK HERE***
 #### SAM2 (Segment Anything Model)
-SAM2 is Meta’s SOTA image segmentation model. SAM2 with no arguments will take an image and perform semantic segmentation and boasts a  high degree of mask accuracy. Although running a whole frame through SAM2 would be much too computationally expensive, you can prompt SAM2 to segment an object by giving a text, XY coordinate, or bounding box argument. 
-Knowing this, I attempted a hybrid approach where I would detect the targets using YOLOv8 and then feed the bounding boxes into SAM2 to generate a high-quality mask. This worked exceptionally well and resulted in nearly perfect masks. Unfortunately, the processing time was now ~11 frames per second which was not within my set specifications. 
+SAM2 is Meta’s SOTA image segmentation model. SAM2 with no arguments will take an image and perform semantic segmentation and boasts a  high degree of mask accuracy. Although running a whole frame through SAM2 would be much too computationally expensive, you can prompt SAM2 to segment an object by giving a text, XY coordinate, or bounding box argument.\
+Knowing this, I attempted a hybrid approach where I would detect the targets using YOLOv8 and then feed the bounding boxes into SAM2 to generate a high-quality mask. This worked exceptionally well and resulted in nearly perfect masks. Unfortunately, the processing time was now ~11 frames per second which was not within my set specifications.\
 ***INSERT IMAGE OF SAM2 SEGMENTATION HERE***
 #### Final Model Decision
-The model that I selected for this project fit between the original YOLOv8 run with low quality masks and fast processing, and SAM2 with high quality masks and slow processing speed. This project utilizes a YOLO model with retina masks enabled. Enabling retina masks allows the masks to be generated at the same resolution as the input image, instead of being downsized to 640x640, while the accuracy of this mask was not as perfect as SAM2 and not as fast as YOLOv8 without retina masks, it runs at ~40FPS and is accurate enough to minimize non-target areas being marked as targets and vice versa.
+The model that I selected for this project fit between the original YOLOv8 run with low quality masks and fast processing, and SAM2 with high quality masks and slow processing speed. This project utilizes a YOLO model with retina masks enabled. Enabling retina masks allows the masks to be generated at the same resolution as the input image, instead of being downsized to 640x640, while the accuracy of this mask was not as perfect as SAM2 and not as fast as YOLOv8 without retina masks, it runs at ~40FPS and is accurate enough to minimize non-target areas being marked as targets and vice versa.\
 
 ***INSERT IMAGE OF RETINA MASKS HERE***
 
 ##### Final Model Hyperparameters
 The final YOLO model used the following hyperparameters for training.
-`epochs = 100`:  100 epochs were used to ensure the model would converge, this value was set arbitrarily high as utilizing early stopping will stop the training before this point is reached
-`imgsz = 1920`:  Model was trained on images at full resolution as smaller targets would lose too much detail on more compressed sizes
-`batch = 6 `: Batch size of 6 was used due to using local hardware, different batch sizes did not have a large impact on the results due to the similarity of targets in the images
-`optimizer = "AdamW"` :  AdamW was used to help the model converge faster and generalize better.
-`dropout = 0.3`:  A dropout of 0.3 was used, I experimented with larger dropouts, but it did not have a large impact on the model’s accuracy as it is already ~99.5%
-`patience = 10`:  Early stopping of 10 was used to avoid overfitting and lower computational costs.
+`epochs = 100`:  100 epochs were used to ensure the model would converge, this value was set arbitrarily high as utilizing early stopping will stop the training before this point is reached\
+`imgsz = 1920`:  Model was trained on images at full resolution as smaller targets would lose too much detail on more compressed sizes\
+`batch = 6 `: Batch size of 6 was used due to using local hardware, different batch sizes did not have a large impact on the results due to the similarity of targets in the images\
+`optimizer = "AdamW"` :  AdamW was used to help the model converge faster and generalize better.\
+`dropout = 0.3`:  A dropout of 0.3 was used, I experimented with larger dropouts, but it did not have a large impact on the model’s accuracy as it is already ~99.5%\
+`patience = 10`:  Early stopping of 10 was used to avoid overfitting and lower computational costs.\
 ***INSERT IMAGE OF RETINA MASKS HERE***
 ### Auto Annotation (50 Images/hour to 500+ Images/hour)
-While the hybrid model solution was not the model chosen in the final program, I did find a use case in using it to assist in auto-annotating images. I wrote the script `SAM2-YOLO Auto Annotation – PLT Display.py` to speed up the annotation process by >10x.
-This script takes a CLI input of a directory with unlabeled images and an output directory, which for the first run could be empty, but subsequent runs should point to the same directory. Then, the image fed into the YOLOv8 model with a confidence interval of 0.5. The output bounding boxes are acquired, and points prompts are generated by finding the bounding box center, an ignore point is set for the center of the screen to ignore the user’s crosshair.
-These point prompts are then fed into SAM2, and masks are generated, these masks are then overlayed over the input image and displayed using OpenCV and the user is prompted to either accept, reject, or exit (y, n, e respectively) . If the user accepts, the image and correct YOLO polygon mask format masks will be placed into the accepted folder. If rejected the image with no masks will be placed into the rejected images folder. 
+While the hybrid model solution was not the model chosen in the final program, I did find a use case in using it to assist in auto-annotating images. I wrote the script `SAM2-YOLO Auto Annotation – PLT Display.py` to speed up the annotation process by >10x.\
+This script takes a CLI input of a directory with unlabeled images and an output directory, which for the first run could be empty, but subsequent runs should point to the same directory. Then, the image fed into the YOLOv8 model with a confidence interval of 0.5. The output bounding boxes are acquired, and points prompts are generated by finding the bounding box center, an ignore point is set for the center of the screen to ignore the user’s crosshair.\
+These point prompts are then fed into SAM2, and masks are generated, these masks are then overlayed over the input image and displayed using OpenCV and the user is prompted to either accept, reject, or exit (y, n, e respectively) . If the user accepts, the image and correct YOLO polygon mask format masks will be placed into the accepted folder. If rejected the image with no masks will be placed into the rejected images folder.\
 This program also includes a failsafe to check the accepted and rejected folders so that the user can continue labeling where they left off if the program is exited or a crash occurs. This will avoid annotating images that were already annotated.
 This process sped up the annotation process from 50 images/hour to over 500. The workflow after this auto annotator was created was to auto annotate a large batch of images, re-train the model on these new images and ensure performance was acceptable and then delete the images from the rejected folder so that they can be reprocessed using the improved model. 
 
@@ -155,24 +154,24 @@ Targets are detected using the YOLO model I spoke about in the previous section.
 ### Crosshair Movement Tracking Using Hungarian Algorithm
 The most complex functionality in this code is the crosshair movement tracking portion. The reason this information is important is because it allows us to track flick and adjustment speeds and periods. Additionally, it allows for a higher accuracy hit detection because targets can be individually identified, and previous locations can be referenced to determine if the target was hit or not.
 In short, as the crosshair is at a fixed position in the center of the screen, the only way to determine movement is by taking the relative position of the targets and comparing them between frames, a vector is then created based on these values which will point to the crosshairs position on the previous frame. This process takes place in the calculate_target_motion function
-To achieve this, we take our two generated lists, prev_mask_centers and current_mask_centers and create an NxM cost_matrix based on the Euclidian distance between all the current points and previous points. For example, if there are three previous points and two current points the cost matrix would equal: [[Euclidian(c0,p0),Euclidian(c0,p1)],
-[Euclidian(c1,p0), Euclidian(c1,p1)],
- [Euclidian(c2,p0), Euclidian(c2,p1)]] 
+To achieve this, we take our two generated lists, prev_mask_centers and current_mask_centers and create an NxM cost_matrix based on the Euclidian distance between all the current points and previous points. For example, if there are three previous points and two current points the cost matrix would equal:\ [[Euclidian(c0,p0),Euclidian(c0,p1)],\
+[Euclidian(c1,p0), Euclidian(c1,p1)],\
+ [Euclidian(c2,p0), Euclidian(c2,p1)]] \
 Then a linear_sum_assignment is run on the cost_matrix and returns the number of points equal to the minimum size of prev_mask_centers or current_mask_centers, in this case it would return two points (X = 2) based on the two points in prev_mask_centers. The output of linear_sum_assignment identifies the pairings that result in the least total cost.
 The row and column locations of these values are then used to grab the actual XY center points (not Euclidean) of the masks.
 These 2 points are then subtracted as (current_x – previous_x) and (current_y - previous_y), this will be the vector (magnitude and direction) of the pairing and saved as dxs and dys. Finally, these values are averaged and returned as XY values that can be added to the current crosshair position to get the previous crosshairs position.
 
 ### Hit Detection
-The function determine_hit_registration essentially checks if the crosshair was on a target in the previous frame, and then off a target in the current frame. This is determined by checking if any part of a segmentation mask is crossing over the user’s crosshair, which is determined as the center of the screen XY = (960x540) + a padding radius (defined in configuration as CROSSHAIR_PAD, default = 6. Too large may affect time on target metrics, too small may affect hit detection).
+The function determine_hit_registration essentially checks if the crosshair was on a target in the previous frame, and then off a target in the current frame. This is determined by checking if any part of a segmentation mask is crossing over the user’s crosshair, which is determined as the center of the screen XY = (960x540) + a padding radius (defined in configuration as CROSSHAIR_PAD, default = 6. Too large may affect time on target metrics, too small may affect hit detection).\
 If this situation occurs, then logic is used to determine if the previous closest target center and current closest target center are the same target. This is done by utilizing the crosshair movement vector by applying this vector to the current frame’s crosshair location. This essentially places the old crosshair location on the current frame. If the distance between this location and the closest target is equal to the previous frames crosshair to closest target, this means that the same target is present and the user either quickly flicked over the target or was on a target and then adjusted off. These values are pulled from the find_closest_point function.
 ***INSERT IMAGE OF WHAT THIS LOOKS LIKE***
 ### Flick and Adjustment Analysis
-The flick and adjustment analysis utilizes an AimPhaseTracker class. This class has 4 phases, defined in a dictionary, as Idle = 0, waiting_flick_speed = 1, timing_flick = 2, timing_adjustment = 3. These distinct phases are determined by the object’s current phase as well as logic for hit detection, crosshair speed, and radius around a target. 
-For example, the flick and adjustment phase will initially be waiting_flick_speed, then when the user exceeds the FLICK_MIN_SPEED_START_THRESHOLD set in the configuration, the phase will change to  timing_flick. The object will only enter the timing_adjustment phase when the crosshair is within FLICK_PROXIMITY_RADIUS of a target center AND has dropped below the FLICK_MAX_SPEED_END_THRESHOLD. Once it entered the timing_adjustment phase, it will stay in this phase until a hit is detected, where it will activate the calculate_flick_metrics function.
-This function calculates the flick time in seconds, flick distance in pixels, normalized flick time, and average flick speed. The normalized flick time is used to normalize the flick time over a given distance, this will help with determining the speed of a flick regardless of how far the target being flicked to is.
+The flick and adjustment analysis utilizes an AimPhaseTracker class. This class has 4 phases, defined in a dictionary, as Idle = 0, waiting_flick_speed = 1, timing_flick = 2, timing_adjustment = 3. These distinct phases are determined by the object’s current phase as well as logic for hit detection, crosshair speed, and radius around a target.\
+For example, the flick and adjustment phase will initially be waiting_flick_speed, then when the user exceeds the FLICK_MIN_SPEED_START_THRESHOLD set in the configuration, the phase will change to  timing_flick. The object will only enter the timing_adjustment phase when the crosshair is within FLICK_PROXIMITY_RADIUS of a target center AND has dropped below the FLICK_MAX_SPEED_END_THRESHOLD. Once it entered the timing_adjustment phase, it will stay in this phase until a hit is detected, where it will activate the calculate_flick_metrics function.\
+This function calculates the flick time in seconds, flick distance in pixels, normalized flick time, and average flick speed. The normalized flick time is used to normalize the flick time over a given distance, this will help with determining the speed of a flick regardless of how far the target being flicked to is.\
 There is failsafe logic in this section to account for hits being detected outside of the timing_adjustment phase.
 ### OCR for Results and Timer
-PaddleOCR is used to detect timer resets in the first x% frames of the processed clip (set in OCR_INITIAL_SCAN_DURATION_PCT as a value between 0.00 and 1.00, default is 0.30) the function for this call is extract_text_from_ocr_region. Initially the entire frame is searched for text matching #:## (this can be changed in OCR_TIMER_RESET_REGEX_PATTERN in the configuration, this can be modified for scenarios that may be longer than 60 seconds, although most are 60) Once the timer is located, the scanned region becomes cropped by a bounding box around the timer +  OCR_TIMER_PADDING, this helps reduce the time it takes to run the OCR scan for subsequent checks, this check runs every 5 frames. If a reset occurs past 30% into the video, the metrics may not be accurate.
+PaddleOCR is used to detect timer resets in the first x% frames of the processed clip (set in OCR_INITIAL_SCAN_DURATION_PCT as a value between 0.00 and 1.00, default is 0.30) the function for this call is extract_text_from_ocr_region. Initially the entire frame is searched for text matching #:## (this can be changed in OCR_TIMER_RESET_REGEX_PATTERN in the configuration, this can be modified for scenarios that may be longer than 60 seconds, although most are 60) Once the timer is located, the scanned region becomes cropped by a bounding box around the timer +  OCR_TIMER_PADDING, this helps reduce the time it takes to run the OCR scan for subsequent checks, this check runs every 5 frames. If a reset occurs past 30% into the video, the metrics may not be accurate.\
 If the timer ever reads 0:59 all the accumulated metrics will be reset, this logic is in place to allow users to upload clips that are not perfectly cropped around the beginning of their desired run, as is the case with most gameplay clips.
 
 PaddleOCR is also used in the final x% of frames (OCR_FRAME_SCAN_PERCENTAGE_END, default = 0.95). This OCR scan grabs the final score, accuracy, hits, and shots taken based on the regex settings. Once these values are acquired, OCR scans are no longer applied to the region where these values are located, once all the values are acquired, no more OCR scans occur.
@@ -180,47 +179,47 @@ PaddleOCR is also used in the final x% of frames (OCR_FRAME_SCAN_PERCENTAGE_END,
 ### CSV Output
 `aim_analysis.py` when given either a single video, or directory of videos, will output “VIDEO NAME”_hit_metrics.csv, “VIDEO NAME”_hit_metrics_summary.csv, overall_batch_summary (if batch processing clips), and an output folder with the annotated video (if debugging is enabled).
 #### Hit Metrics CSV
-The hit metrics CSV includes the following columns, with one row per hit.
-*avg_time_on_target_s  = Average time on target (seconds)
-*median_time_on_target_s  = Median time on target (seconds)
-*avg_time_between_hits_s  = Average time between hits (seconds)
-*median_time_between_hits_s  = Median time between hits (seconds)
-*avg_flick_time_s  = Average flick time (seconds)
-*median_flick_time_s  = Median flick time (seconds)
-*avg_adj_time_s  = Average adjustment time (seconds)
-*median_adj_time_s = Median adjustment time (seconds)
-*avg_speed_at_flick_end_px_f = Average speed at flick end (pixels/frame)
-*median_speed_at_flick_end_px_f = Median speed at flick end (pixels/frame)
-*avg_flick_dist_px = Average flick distance (pixels)
-*median_flick_dist_px = Median flick distance (pixels)
-*avg_norm_flick_time_s_px = Average normalized flick speed (seconds/pixel)
-*median_norm_flick_time_s_px = Median normalized flick speed (seconds/pixel)
-*avg_flick_speed_px_s = Average flick speed (pixels/second)
-*median_flick_speed_px_s = Median flick speed (pixels/second)
+The hit metrics CSV includes the following columns, with one row per hit.\
+*avg_time_on_target_s  = Average time on target (seconds)\
+*median_time_on_target_s  = Median time on target (seconds)\
+*avg_time_between_hits_s  = Average time between hits (seconds)\
+*median_time_between_hits_s  = Median time between hits (seconds)\
+*avg_flick_time_s  = Average flick time (seconds)\
+*median_flick_time_s  = Median flick time (seconds)\
+*avg_adj_time_s  = Average adjustment time (seconds)\
+*median_adj_time_s = Median adjustment time (seconds)\
+*avg_speed_at_flick_end_px_f = Average speed at flick end (pixels/frame)\
+*median_speed_at_flick_end_px_f = Median speed at flick end (pixels/frame)\
+*avg_flick_dist_px = Average flick distance (pixels)\
+*median_flick_dist_px = Median flick distance (pixels)\
+*avg_norm_flick_time_s_px = Average normalized flick speed (seconds/pixel)\
+*median_norm_flick_time_s_px = Median normalized flick speed (seconds/pixel)\
+*avg_flick_speed_px_s = Average flick speed (pixels/second)\
+*median_flick_speed_px_s = Median flick speed (pixels/second)\
 #### Summary CSV
-The summary CSV includes the aggregated stats over the scenarios duration.
-*total_hits_recorded = Total hits recorded
-*ocr_final_score = Final score from results screen
-*ocr_accuracy = Accuracy from results screen
-*ocr_shots_fired = shots fired from results screen
+The summary CSV includes the aggregated stats over the scenarios duration.\
+*total_hits_recorded = Total hits recorded\
+*ocr_final_score = Final score from results screen\
+*ocr_accuracy = Accuracy from results screen\
+*ocr_shots_fired = shots fired from results screen\
 #### Debugging Video
-The visible data on the debugging video is as follows.
-*timer_roi = Timer bounding box
-*prox_crop_coords = YOLO prediction cropped region
-*screen_center_x = Center of screen X
-*screen_center_y = Center of screen Y
-*effective_prev_crosshair_x = Previous crosshair X
-*effective_prev_crosshair_y = Previous crosshair Y
-8current_hits = Accumulated hit count (since last reset)
-*current_crosshair_speed = Crosshair speed
-*aim_phase_status = Current object aim phase status
-*current_time_on_target_s = Current time on target (seconds)
-*current_time_between_hits_s = Current time between hits (seconds)
-*last_tot_s = Last time on target (seconds)
-*last_flick_s = Time spent flicking to last target (seconds)
-*last_flick_speed_pxf = Time spent flicking to last target (pixels/frame)
-*last_adj_s = Time spent adjusting for last target (seconds)
-*mask_polygons_absolute = Segmentation masks for all targets within prediction region 
-*current_mask_centers = Centers of all detected masks
+The visible data on the debugging video is as follows.\
+*timer_roi = Timer bounding box\
+*prox_crop_coords = YOLO prediction cropped region\
+*screen_center_x = Center of screen X\
+*screen_center_y = Center of screen Y\
+*effective_prev_crosshair_x = Previous crosshair X\
+*effective_prev_crosshair_y = Previous crosshair Y\
+8current_hits = Accumulated hit count (since last reset)\
+*current_crosshair_speed = Crosshair speed\
+*aim_phase_status = Current object aim phase status\
+*current_time_on_target_s = Current time on target (seconds)\
+*current_time_between_hits_s = Current time between hits (seconds)\
+*last_tot_s = Last time on target (seconds)\
+*last_flick_s = Time spent flicking to last target (seconds)\
+*last_flick_speed_pxf = Time spent flicking to last target (pixels/frame)\
+*last_adj_s = Time spent adjusting for last target (seconds)\
+*mask_polygons_absolute = Segmentation masks for all targets within prediction region \
+*current_mask_centers = Centers of all detected masks\
 
 
