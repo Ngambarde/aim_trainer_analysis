@@ -172,6 +172,8 @@ Knowing this, I attempted a hybrid approach where I would detect the targets usi
 ## Final Model Decision
 The model that I selected for this project fit between the original YOLOv8 run with low quality masks and fast processing, and SAM2 with high quality masks and slow processing speed. This project utilizes a YOLO model with retina masks enabled. Enabling retina masks allows the masks to be generated at the same resolution as the input image, instead of being downsized to 640x640, while the accuracy of this mask was not as perfect as SAM2 and not as fast as YOLOv8 without retina masks, it runs at ~40FPS and is accurate enough to minimize non-target areas being marked as targets and vice versa.
 
+![Final Model Confusion Matrix](https://github.com/user-attachments/assets/bea72bac-f441-4ec1-91ad-ae5fd48370a3)
+
 ![YOLOv8 With Retina Masks](https://github.com/user-attachments/assets/97d25ff4-88fd-4598-b4d7-86ca5ec579db)
 
 
