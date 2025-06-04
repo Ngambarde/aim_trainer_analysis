@@ -453,18 +453,6 @@ def draw_debug_visualizations(frame: np.ndarray, viz_data: Dict, config: Dict):
     cv2.circle(frame, (viz_data["screen_center_x"], viz_data["screen_center_y"]), config["FLICK_PROXIMITY_RADIUS"],
                (255, 255, 0), 1)  # Flick radius
 
-    # Setting values to int for previous crosshair position location
-    prev_ch_x = int(viz_data["prev_crosshair_x"])
-    prev_ch_y = int(viz_data["prev_crosshair_y"])
-    curr_ch_x = int(viz_data["screen_center_x"])
-    curr_ch_y = int(viz_data["screen_center_y"])
-
-    if prev_ch_x != curr_ch_x or prev_ch_y != curr_ch_y:    # Checks if any movement was detected
-        arrow_color = (255, 0, 255)
-        arrow_thickness = 1
-        cv2.arrowedLine(frame, (prev_ch_x, prev_ch_y), (curr_ch_x, curr_ch_y),
-                        arrow_color, arrow_thickness, tipLength=0.1)
-
     # Draws detected masks and centers
     for poly_abs in viz_data.get("mask_polygons_absolute", []):
         cv2.polylines(frame, [poly_abs], True, (0, 255, 0), 1)
