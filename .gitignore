@@ -12,7 +12,7 @@ venv.bak
 *.egg-info/
 dist/
 build/
-target/ # For Rust/other compiled outputs if any
+target/
 
 # IDE & OS specific
 .vscode/

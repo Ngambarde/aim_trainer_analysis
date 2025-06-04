@@ -411,7 +411,7 @@ def determine_hit_registration(
         config: Dict
 ) -> bool:
     """
-    Determines if a hit was registered in the current frame   #
+    etermines if a hit was registered in the current frame   #
     """
     is_previous_main_target_identifiable = False
     if current_mask_centers and prev_mask_centers:
@@ -452,6 +452,18 @@ def draw_debug_visualizations(frame: np.ndarray, viz_data: Dict, config: Dict):
     # Flick proximity radius around center
     cv2.circle(frame, (viz_data["screen_center_x"], viz_data["screen_center_y"]), config["FLICK_PROXIMITY_RADIUS"],
                (255, 255, 0), 1)  # Flick radius
+
+    # Setting values to int for previous crosshair position location
+    prev_ch_x = int(viz_data["prev_crosshair_x"])
+    prev_ch_y = int(viz_data["prev_crosshair_y"])
+    curr_ch_x = int(viz_data["screen_center_x"])
+    curr_ch_y = int(viz_data["screen_center_y"])
+
+    if prev_ch_x != curr_ch_x or prev_ch_y != curr_ch_y:    # Checks if any movement was detected
+        arrow_color = (255, 0, 255)
+        arrow_thickness = 1
+        cv2.arrowedLine(frame, (prev_ch_x, prev_ch_y), (curr_ch_x, curr_ch_y),
+                        arrow_color, arrow_thickness, tipLength=0.1)
 
     # Draws detected masks and centers
     for poly_abs in viz_data.get("mask_polygons_absolute", []):
@@ -585,6 +597,7 @@ def main_process_video(
         # 1. OCR scenario reset timer check
         if frame_idx < config["OCR_INITIAL_SCAN_DURATION_PCT"] * total_frames and (frame_idx % 10) == 0: # Checks every 10 frames for the first x% of the video (x% is set from OCR_INITIAL_SCAN_DURATION_PCT)
             if check_scenario_reset_ocr(frame, ocr_model, ocr_state, config, frame_w, frame_h):          # Checks if timer = 0:59
+                print(f"Scenario reset detected at frame {frame_idx} in {video_file_path.name}")
                 hit_events_data = []  # Reset all collected hit data
                 frames_on_target_current_cycle = 0
                 frames_between_hits_current_cycle = 0
