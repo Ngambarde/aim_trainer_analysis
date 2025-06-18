@@ -461,45 +461,45 @@ def draw_debug_visualizations(frame: np.ndarray, viz_data: Dict, config: Dict):
 
     # --- Draw text ---
     # Draw text info
-    text_y_offset = 30
+    text_y_offset = frame.shape[0] // 2
     font = cv2.FONT_HERSHEY_SIMPLEX
-    font_scale = 0.5
+    font_scale = 1.2
     color_info = (0, 255, 0)
     color_status = (255, 255, 0)
     color_metric = (0, 255, 255)
     color_current_metric = (255,165,0)
-    thickness = 1
+    thickness = 2
 
     # Hits
     cv2.putText(frame, f"Hits: {viz_data['current_hits']}", (10, text_y_offset), font, font_scale, color_info,
                 thickness)
-    text_y_offset += 18
+    text_y_offset += int(28 * font_scale)
 
     # Crosshair Speed
     cv2.putText(frame, f"Crosshair Speed: {viz_data['current_crosshair_speed']:.2f} px/f", (10, text_y_offset), font,
                 font_scale, color_status, thickness)
-    text_y_offset += 18
+    text_y_offset += int(28 * font_scale)
 
     # Aim Phase Status
     cv2.putText(frame, viz_data['aim_phase_status'], (10, text_y_offset), font, font_scale, color_status, thickness)
-    text_y_offset += 18
+    text_y_offset += int(28 * font_scale)
 
     # Current Cycle Metrics
     cv2.putText(frame, f"Current ToT: {viz_data.get('current_time_on_target_s', 0.0):.3f}s", (10, text_y_offset), font, font_scale,
                 color_current_metric, thickness)
-    text_y_offset += 18
+    text_y_offset += int(28 * font_scale)
     cv2.putText(frame, f"Current TBH: {viz_data.get('current_time_between_hits_s', 0.0):.3f}s", (10, text_y_offset), font, font_scale,
                 color_current_metric, thickness)
-    text_y_offset += 18
+    text_y_offset += int(28 * font_scale)
 
     # Last Completed Hit Metrics
-    text_y_offset += 5 # Adding a small gap between last hit metrics
+    text_y_offset += int(10 * font_scale) # Adding a small gap between last hit metrics
 
     # Last time on target (seconds)
     if viz_data['last_tot_s'] is not None:
         cv2.putText(frame, f"Last ToT: {viz_data['last_tot_s']:.3f}s", (10, text_y_offset), font, font_scale,
                     color_metric, thickness)
-        text_y_offset += 20
+        text_y_offset += int(28 * font_scale)
 
     # Last flick/adjust if both exist for cleaner display
     last_flick_text = "Last Flick: N/A"
@@ -511,13 +511,13 @@ def draw_debug_visualizations(frame: np.ndarray, viz_data: Dict, config: Dict):
         else:
             last_flick_text = f"Last Flick: {flick_s:.3f}s"
     cv2.putText(frame, last_flick_text, (10, text_y_offset), font, font_scale, color_metric, thickness)
-    text_y_offset += 18
+    text_y_offset += int(28 * font_scale)
 
     last_adjust_text = "Last Adjust: N/A"
     if viz_data['last_adj_s'] is not None and not np.isnan(viz_data['last_adj_s']):
         last_adjust_text = f"Last Adjust: {viz_data['last_adj_s']:.3f}s"
     cv2.putText(frame, last_adjust_text, (10, text_y_offset), font, font_scale, color_metric, thickness)
-    text_y_offset += 18
+    text_y_offset += int(28 * font_scale)
 
 
 # --------------- MAIN PROCESSING LOGIC ---------------
